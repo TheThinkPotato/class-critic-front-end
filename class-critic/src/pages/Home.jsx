@@ -1,10 +1,13 @@
-import { Routes, Route } from "react-router-dom";
 import Header from "../components/Header";
+import FrontCard from "../components/FrontCard";
+import { useState } from 'react';
 
 function Home() {
-  return (
-    <div className="App bg-slate-900 text-white h-screen flex flex-col">
+  const [data, setData] = useState('');
+    return (
+    <div className="App bg-indigo-900 text-white h-screen flex flex-col">
       <Header />
+      <FrontCard />
     </div>
   );
 }
