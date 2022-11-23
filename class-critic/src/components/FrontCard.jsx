@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ScoreChart from "./ScoreChart";
+import Star from "./Star";
 
 let guid = 0;
 
 const FrontCard = (props) => {
   const data = props.data;
-
   const totalRating = data.overallRatings ? data.overallRatings.totalRating : 0;
 
   guid++;
+
+  const navigate = useNavigate();
+  const navigateStudent = () => {
+    navigate(`/Student`, { state: { data: data } });
+  };
 
   useEffect(() => {
     //render
@@ -42,8 +48,14 @@ const FrontCard = (props) => {
             </tbody>
           </table>
         </div>
-
-        <ScoreChart score={totalRating.toFixed(3)} guid={guid} />        
+        <div className="hidden lg:block m-auto" >
+        <Star score={totalRating.toFixed(1)} guid={guid}/>     
+        </div>
+        <button className="self-center bg-blue-500 hover:bg-blue-700 text-white font-bold ml-10 p-2 rounded focus:outline-none focus:shadow-outline"
+        onClick={() => {navigateStudent()}}>          
+          See Details
+        </button>
+        <ScoreChart score={totalRating.toFixed(3)} guid={guid} />                
       </div>
     </article>
   );

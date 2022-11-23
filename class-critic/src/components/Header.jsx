@@ -40,7 +40,7 @@ const Header = (props) => {
             <h1 className="text-4xl font-bold">Class Critic</h1>
 
             <p className="text-2xl font-semibold italic">
-              Create better groups
+              Find better groups
             </p>
           </div>
         </div>
