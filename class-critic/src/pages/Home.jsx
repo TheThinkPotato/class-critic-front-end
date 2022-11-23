@@ -4,24 +4,17 @@ import { useState } from "react";
 import React, { useEffect } from "react";
 import { search } from "../data/apiCalls";
 
-const template = {data :[{ fName: "", lName: "", uni:"", major:"" }]};
-
-function initLoad()
-{
-  return search("").then( (resp) => {
-  console.log("---------->>",resp.data);
-  return resp.data;});
-}
+const template = { data: [{ fName: "", lName: "", uni: "", major: "" }] };
 
 function Home() {
   const [data, setData] = useState(template);
 
-  
-
   useEffect(() => {
     //rerender
-    // console.log("xxx**",initLoad());
-
+    search("").then((resp) => {
+      setData(resp.data);
+      return resp.data;
+    });
   }, []);
 
   useEffect(() => {
@@ -33,10 +26,9 @@ function Home() {
       <Header data={data} setData={setData} />
       {console.log("data-", data.data)}
       {console.log("ex-", template)}
-      {data.data.map((data) => (        
-       <FrontCard data={data} />              
+      {data.data.map((data) => (
+        <FrontCard data={data} />
       ))}
-
     </div>
   );
 }
