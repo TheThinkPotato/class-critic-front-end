@@ -20,7 +20,7 @@ function Home() {
 
   useEffect(() => {
     //rerender
-    console.log("xxx**",initLoad());
+    // console.log("xxx**",initLoad());
 
   }, []);
 

@@ -2,11 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "material-ui-search-bar";
 import { search } from "../data/apiCalls";
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-const Header = (props) => {
+const Header = (props) => {  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true);
+    }
+  }, [isLoggedIn]);
+
+
+  function logOut() {
+    console.log("logging out");
+    localStorage.clear();
+    setIsLoggedIn(false);
+  }
+
   return (
     <header className="bg-white text-slate-900">
       <div className="justify-center flex py-2">
@@ -21,17 +36,19 @@ const Header = (props) => {
           <p className="text-2xl font-semibold italic">Create better groups</p>
         </div>
         <SearchBar
-          className="my-auto w-96 ml-5 border-2 border-black"
+          className="my-auto w-96 ml-5 border-2 border-black mr-10"
           onRequestSearch={(e) => {
             search(e).then((resp) => {
               props.setData(resp.data);
             });
           }}
         />
-
+        {isLoggedIn && (
+        <h2 className="my-auto font-bold text-2xl">{localStorage.getItem("fName")}</h2>
+        )}
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="bg-blue-500 ml-10 py-1 px-1 rounded-full hover:bg-indigo-500 my-2">
+            <Menu.Button className="bg-blue-500 ml-2 py-1 px-1 rounded-full hover:bg-indigo-500 my-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -60,43 +77,49 @@ const Header = (props) => {
           >
             <Menu.Items className="absolute right-0 z-10 mt-0 w-56 origin-top-right rounded-md bg-white bg-opacity-95 shadow-lg ring-2 ring-black ring-opacity-50 focus:outline-none">
               <div className="py-1">
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link to="/LogIn">
-                      <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                        Sign In
-                      </p>
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link to="/">
-                      <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                        Sign Out
-                      </p>
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link to="/Register">
-                      <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                        Register
-                      </p>
-                    </Link>
-                  )}
-                </Menu.Item>
+                {!isLoggedIn && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link to="/LogIn">
+                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
+                          Log In
+                        </p>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
+                {isLoggedIn && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button className="w-full text-left py-1 pl-2 text-xl hover:bg-indigo-100" onClick={()=>{ logOut()}}>                        
+                        Log Out
+                      </button>
+                    )}
+                  </Menu.Item>
+                )}
                 <hr />
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link to="/">
-                      <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                        My Account
-                      </p>
-                    </Link>
-                  )}
-                </Menu.Item>
+                {!isLoggedIn && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link to="/Register">
+                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
+                          Register
+                        </p>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
+                {isLoggedIn && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link to="/">
+                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
+                          My Account
+                        </p>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
               </div>
             </Menu.Items>
           </Transition>
