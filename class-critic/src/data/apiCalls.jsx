@@ -79,6 +79,7 @@ export async function login(email, password) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("fName", response.data.fName);
       localStorage.setItem("lName", response.data.lName);
+      localStorage.setItem("email", response.data.email);
       return response;
     }
   } catch (error) {

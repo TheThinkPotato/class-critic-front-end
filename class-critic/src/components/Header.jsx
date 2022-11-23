@@ -1,13 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "material-ui-search-bar";
 import { search } from "../data/apiCalls";
 import { Fragment, useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
+
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -15,10 +17,10 @@ const Header = (props) => {
     }
   }, [isLoggedIn]);
 
-  function logOut() {
-    console.log("logging out");
+  function logOut() {    
     localStorage.clear();
     setIsLoggedIn(false);
+    navigate("/");
   }
 
   return (
@@ -26,7 +28,11 @@ const Header = (props) => {
       <div className="justify-center flex py-2">
         <Link to="/">
           <button className="">
-            <img src="/logo.png" alt="Logo" className="w-16 md:w-24  mt-2 md:mx-2 ml-2" />
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-16 md:w-24  mt-2 md:mx-2 ml-2"
+            />
           </button>
         </Link>
         <div className="hidden md:inline my-2">
@@ -122,7 +128,7 @@ const Header = (props) => {
                 {isLoggedIn && (
                   <Menu.Item>
                     {({ active }) => (
-                      <Link to="/">
+                      <Link to="/Account">
                         <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
                           My Account
                         </p>
