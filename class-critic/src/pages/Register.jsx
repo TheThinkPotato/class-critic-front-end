@@ -4,13 +4,15 @@ import UserControl from "../components/UserControl";
 
 export default function Login() {
   return (
-    <div className="App bg-indigo-900 text-white h-screen flex flex-col">
-      <Header />
-      <UserControl
-        title={"Register"}
-        text={"Please enter email and password."}
-        type={"register"}
-      />
+    <div className="bg-indigo-900 h-screen">
+      <div className="bg-indigo-900 text-white h-screen flex flex-col">
+        <Header />
+        <UserControl
+          title={"Register"}
+          text={"Please enter email and password."}
+          type={"register"}
+        />
+      </div>
     </div>
   );
 }

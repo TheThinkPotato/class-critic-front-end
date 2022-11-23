@@ -22,14 +22,14 @@ function Home() {
   }, [data]);
 
   return (
-    <div className="App bg-indigo-900 text-white h-screen flex flex-col">
-      <Header data={data} setData={setData} />      
-      <div className="my-10">
-
+    <div className="bg-indigo-900 h-screen">
+      <div className="bg-indigo-900 text-white flex flex-col h-full">
+        <Header data={data} setData={setData} />
+        <div className="my-10"></div>
+        {data.data.map((data) => (
+          <FrontCard data={data} />
+        ))}
       </div>
-      {data.data.map((data) => (
-        <FrontCard data={data} />
-      ))}
     </div>
   );
 }
