@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
+import { updateUser } from "../data/apiCalls";
 import { useState, useEffect } from "react";
 
 export default function Login() {
@@ -63,16 +64,16 @@ export default function Login() {
           <button
             className="w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
             onClick={() => {
-              // register(fName, lName, email, password).then((res) => {
-              //   if (res.error) {
-              //     registerError = true;
-              //     setMessage(res.message);
-              //   } else {
-              //     registerError = false;
-              //     setMessage("");
-              //     navigate("/login");
-              //   }
-              // });
+              updateUser(fName, lName, email, password).then((res) => {
+                if (res.error) {
+                  
+                  // setMessage(res.message);
+                } else {
+                  console.log("updated:>>",res)
+                  // setMessage("");
+                  
+                }
+              });
             }}
           >
             Update

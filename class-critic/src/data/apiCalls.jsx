@@ -4,6 +4,9 @@ const PORT = "80";
 const HOST = "127.0.0.1";
 const URL = `http://${HOST}:${PORT}`;
 
+axios.defaults.headers.common = {
+  Authorization: `bearer ${localStorage.getItem("token")}`,
+};
 // const SEARCH_URL = URL + "/student/search";
 
 // export function search(searchTerm) {
@@ -116,8 +119,43 @@ export async function register(fName, lName, email, password) {
         message: response.message,
       };
     } else {
-      
-      return ;
+      return;
+    }
+  } catch (error) {
+    console.log("error:", error);
+    return {
+      error: true,
+      status: error.response.status,
+      message: error.response.data.message,
+    };
+  }
+}
+
+export async function updateUser(fName, lName, email, password) {
+  const options = {
+    path: `/user/${email}/profile`,
+  };
+
+  const url = `${URL}${options.path}`;
+  try {
+    const response = await axios.put(url, {
+      // headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      fName: fName,
+      lName: lName,
+      email: email,
+      password: password,
+      timeout: 20000,
+    });
+
+    if (response.status !== 200) {
+      console.log("error:", response.status);
+      return {
+        error: true,
+        status: response.status,
+        message: response.message,
+      };
+    } else {
+      return response.data.message;
     }
   } catch (error) {
     console.log("error:", error);
