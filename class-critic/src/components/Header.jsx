@@ -17,7 +17,7 @@ const Header = (props) => {
     }
   }, [isLoggedIn]);
 
-  function logOut() {    
+  function logOut() {
     localStorage.clear();
     setIsLoggedIn(false);
     navigate("/");
@@ -88,6 +88,41 @@ const Header = (props) => {
           >
             <Menu.Items className="absolute right-0 z-10 mt-0 w-56 origin-top-right rounded-md bg-white bg-opacity-95 shadow-lg ring-2 ring-black ring-opacity-50 focus:outline-none">
               <div className="py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className="w-full text-left py-1 pl-2 text-xl hover:bg-indigo-100"
+                      onClick={() => {
+                        navigate("/");
+                      }}
+                    >
+                      Home
+                    </button>
+                  )}
+                </Menu.Item>
+                {isLoggedIn && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link to="/">
+                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
+                          Add student review
+                        </p>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
+                {isLoggedIn && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link to="/Account">
+                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
+                          My Account
+                        </p>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
+                <hr />
                 {!isLoggedIn && (
                   <Menu.Item>
                     {({ active }) => (
@@ -113,24 +148,13 @@ const Header = (props) => {
                     )}
                   </Menu.Item>
                 )}
-                <hr />
+
                 {!isLoggedIn && (
-                  <Menu.Item>
+                  <Menu.Item>                    
                     {({ active }) => (
                       <Link to="/Register">
                         <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
                           Register
-                        </p>
-                      </Link>
-                    )}
-                  </Menu.Item>
-                )}
-                {isLoggedIn && (
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link to="/Account">
-                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                          My Account
                         </p>
                       </Link>
                     )}

@@ -49,7 +49,7 @@ export default function Login() {
               />
             </div>
             <div className="mb-4 mt-4 w-full self-center">
-              <h2 className="text-center font-semibold">Last Name:</h2>
+              <h2 className="text-center font-semibold">New Password:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 placeholder="New Password"

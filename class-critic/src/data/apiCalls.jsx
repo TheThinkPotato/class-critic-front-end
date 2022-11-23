@@ -119,7 +119,7 @@ export async function register(fName, lName, email, password) {
         message: response.message,
       };
     } else {
-      return;
+      return {response};
     }
   } catch (error) {
     console.log("error:", error);
