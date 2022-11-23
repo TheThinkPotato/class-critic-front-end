@@ -6,7 +6,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-const Header = (props) => {  
+const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const Header = (props) => {
       setIsLoggedIn(true);
     }
   }, [isLoggedIn]);
-
 
   function logOut() {
     console.log("logging out");
@@ -26,17 +25,21 @@ const Header = (props) => {
     <header className="bg-white text-slate-900">
       <div className="justify-center flex py-2">
         <Link to="/">
-          <button>
-            <img src="/logo.png" alt="Logo" className="w-24 mx-2" />
+          <button className="">
+            <img src="/logo.png" alt="Logo" className="w-16 md:w-24  mt-2 md:mx-2 ml-2" />
           </button>
         </Link>
-        <div className="flex flex-col self-center mx-2">
-          <h1 className="text-4xl font-bold">Class Critic</h1>
+        <div className="hidden md:inline my-2">
+          <div className="flex flex-col self-center mx-2">
+            <h1 className="text-4xl font-bold">Class Critic</h1>
 
-          <p className="text-2xl font-semibold italic">Create better groups</p>
+            <p className="text-2xl font-semibold italic">
+              Create better groups
+            </p>
+          </div>
         </div>
         <SearchBar
-          className="my-auto w-96 ml-5 border-2 border-black mr-10"
+          className="my-auto w-52 sm:w-96 ml-2 md:ml-5 border-2 border-black mr-0 md:mr-10"
           onRequestSearch={(e) => {
             search(e).then((resp) => {
               props.setData(resp.data);
@@ -44,18 +47,20 @@ const Header = (props) => {
           }}
         />
         {isLoggedIn && (
-        <h2 className="my-auto font-bold text-2xl">{localStorage.getItem("fName")}</h2>
+          <h2 className="my-auto font-bold text-2xl">
+            {localStorage.getItem("fName")}
+          </h2>
         )}
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="bg-blue-500 ml-2 py-1 px-1 rounded-full hover:bg-indigo-500 my-2">
+            <Menu.Button className="bg-blue-500 mx-2 py-1 px-1 rounded-full hover:bg-indigo-500 mt-2 md:my-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="white"
-                className="w-16 h-16"
+                className="w-10 h-10 md:w-16 md:h-16"
               >
                 <path
                   strokeLinecap="round"
@@ -91,7 +96,12 @@ const Header = (props) => {
                 {isLoggedIn && (
                   <Menu.Item>
                     {({ active }) => (
-                      <button className="w-full text-left py-1 pl-2 text-xl hover:bg-indigo-100" onClick={()=>{ logOut()}}>                        
+                      <button
+                        className="w-full text-left py-1 pl-2 text-xl hover:bg-indigo-100"
+                        onClick={() => {
+                          logOut();
+                        }}
+                      >
                         Log Out
                       </button>
                     )}
