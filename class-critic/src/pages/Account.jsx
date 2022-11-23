@@ -16,7 +16,7 @@ export default function Login() {
       <div className="flex flex-col text-xl border-4 border-solid border-gray-400 my-auto py-5 w-2/3 lg:w-1/2 w rounded-md bg-slate-50 text-black mx-auto">
       <div className="mx-5">
         <h1 className="font-bold text-center mb-10 text-2xl">Account Details</h1>
-            <div className="mb-4 mt-4 w-full self-center">
+        <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
               <h2 className="text-center font-semibold">First Name:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
@@ -27,7 +27,7 @@ export default function Login() {
                 onChange={(e) => setfName(e.target.value)}
               />
             </div>
-            <div className="mb-4 mt-4 w-full self-center">
+            <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
               <h2 className="text-center font-semibold">Last Name:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
@@ -38,7 +38,7 @@ export default function Login() {
                 onChange={(e) => setlName(e.target.value)}
               />
             </div>
-            <div className="mb-4 mt-4 w-full self-center">
+            <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
               <h2 className="text-center font-semibold">Email:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
@@ -49,7 +49,7 @@ export default function Login() {
                 // onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="mb-4 mt-4 w-full self-center">
+            <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
               <h2 className="text-center font-semibold">New Password:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"

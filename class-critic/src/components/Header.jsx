@@ -35,7 +35,7 @@ const Header = (props) => {
             />
           </button>
         </Link>
-        <div className="hidden md:inline my-2">
+        <div className="hidden lg:inline my-2">
           <div className="flex flex-col self-center mx-2">
             <h1 className="text-4xl font-bold">Class Critic</h1>
 
