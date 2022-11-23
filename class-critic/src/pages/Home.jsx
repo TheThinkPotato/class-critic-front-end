@@ -23,9 +23,10 @@ function Home() {
 
   return (
     <div className="App bg-indigo-900 text-white h-screen flex flex-col">
-      <Header data={data} setData={setData} />
-      {console.log("data-", data.data)}
-      {console.log("ex-", template)}
+      <Header data={data} setData={setData} />      
+      <div className="my-10">
+
+      </div>
       {data.data.map((data) => (
         <FrontCard data={data} />
       ))}
