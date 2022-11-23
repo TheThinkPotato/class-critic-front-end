@@ -27,7 +27,16 @@ const FrontCard = (props) => {
   return (
     <article>
       <div className="flex border-4 border-solid border-gray-400 my-2 p-5 max-w-xlg rounded-md bg-slate-50 text-black max-w-5xl mx-auto">
-        <img src="lady.png" className="w-16"></img>
+        {data.gender === "Male" && (
+          <img src="/man.png" className="w-16" alt="student profile" />
+        )}
+        {data.gender === "Female" && (
+          <img src="/lady.png" className="w-16" alt="student profile" />
+        )}
+        {data.gender === "Other" && (
+          <img src="/user.png" className="w-16" alt="student profile" />
+        )}
+
         <div className="grow flex-col">
           <table className="ml-10">
             <tbody>
@@ -48,14 +57,18 @@ const FrontCard = (props) => {
             </tbody>
           </table>
         </div>
-        <div className="hidden lg:block m-auto" >
-        <Star score={totalRating.toFixed(1)} guid={guid}/>     
+        <div className="hidden lg:block m-auto">
+          <Star score={totalRating.toFixed(1)} guid={guid} />
         </div>
-        <button className="self-center bg-blue-500 hover:bg-blue-700 text-white font-bold ml-10 p-2 rounded focus:outline-none focus:shadow-outline"
-        onClick={() => {navigateStudent()}}>          
+        <button
+          className="self-center bg-blue-500 hover:bg-blue-700 text-white font-bold ml-10 p-2 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => {
+            navigateStudent();
+          }}
+        >
           See Details
         </button>
-        <ScoreChart score={totalRating.toFixed(3)} guid={guid} />                
+        <ScoreChart score={totalRating.toFixed(3)} guid={guid} />
       </div>
     </article>
   );

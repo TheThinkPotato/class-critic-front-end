@@ -17,11 +17,27 @@ export default function Student() {
           Student Details
         </h1>
         <div className="flex flex-row">
-          <img
-            src="/lady.png"
-            className="w-1/4 ml-5 rounded-lg border-4 border-solid border-gray-400"
-            alt="student profile"
-          />
+          {data.gender === "Male" && (
+            <img
+              src="/man.png"
+              className="w-1/4 ml-5 rounded-lg border-4 border-solid border-gray-400  bg-gradient-to-b from-white to-gray-200"
+              alt="student profile"
+            />
+          )}
+          {data.gender === "Female" && (
+            <img
+              src="/lady.png"
+              className="w-1/4 ml-5 rounded-lg border-4 border-solid border-gray-400 bg-gradient-to-b from-white to-gray-200"
+              alt="student profile"
+            />
+          )}
+          {data.gender === "Other" && (
+            <img
+              src="/user.png"
+              className="w-1/4 ml-5 rounded-lg border-4 border-solid border-gray-400 bg-gradient-to-b from-white to-gray-200"
+              alt="student profile"
+            />
+          )}
           <div className="grow my-auto">
             <table className="mx-auto">
               <div>
@@ -65,6 +81,15 @@ export default function Student() {
             {data.overallRatings && (
               <ScoreChart score={data.overallRatings.totalRating.toFixed(3)} />
             )}
+
+            <button
+              className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Rate
+            </button>
           </div>
         </div>
         {data.overallRatings && (
@@ -107,12 +132,16 @@ export default function Student() {
             </div>
           </div>
         )}
-        <button
-          className="flex flex-row mt-5 mx-auto px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
-          onClick={() => {navigate("/");}}
-        >
-          Back
-        </button>
+        <div className="flex flex-row w-80 mx-auto ">
+          <button
+            className="mt-5 mx-auto px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );
