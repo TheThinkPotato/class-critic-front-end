@@ -47,7 +47,7 @@ const UserContol = (props) => {
         {props.type === "register" && (
           <div>
             <div className="mb-4 mt-4 w-full self-center">
-              <h2 className="text-center font-semibold">First Name:</h2>
+              <h2 className="text-left font-semibold">First Name:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 placeholder="First Name"
@@ -58,7 +58,7 @@ const UserContol = (props) => {
               />
             </div>
             <div className="mb-4 mt-4 w-full self-center">
-              <h2 className="text-center font-semibold">Last Name:</h2>
+              <h2 className="text-left font-semibold">Last Name:</h2>
               <input
                 className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 placeholder="Last Name"
@@ -71,7 +71,7 @@ const UserContol = (props) => {
           </div>
         )}
 
-        <h2 className="text-center font-semibold">Email:</h2>
+        <h2 className="text-left font-semibold">Email:</h2>
         <input
           className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
           placeholder="Email"
@@ -88,7 +88,7 @@ const UserContol = (props) => {
       </div>
 
       <div className="mb-0 w-2/3 self-center">
-        <h2 className="text-center font-semibold">Password:</h2>
+        <h2 className="text-left font-semibold">Password:</h2>
         <input
           className="bg-gray-200 border-2 border-black rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
           placeholder="Password"

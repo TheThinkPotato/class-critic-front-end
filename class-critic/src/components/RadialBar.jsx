@@ -1,7 +1,21 @@
 import Chart from "react-apexcharts";
 
 const RadialBar = (props) => {
-  const scorePercent = ((props.score / 5) * 100).toFixed(2);
+  let scorePercent = ((props.score / 5) * 100).toFixed(2);
+
+  function checkScore(score) {
+    
+    if (score < 0.01) {
+      return;
+    } else {
+        score = 5*score/100;
+        return score.toFixed(2);
+    }
+  }
+  
+  if (props.score < 0.01) {
+    scorePercent = 1;
+  }
 
   let state = {
     options: {
@@ -60,7 +74,8 @@ const RadialBar = (props) => {
                   // w.globals.seriesTotals.reduce((a, b) => {
                   //   return a + b;
                   // }, 0) /
-                  ((w.globals.series * 5) / 100).toFixed(2)
+                (checkScore(w.globals.series))
+                    // ((w.globals.series * 5) / 100).toFixed(2)                  
                 );
               },
             },
