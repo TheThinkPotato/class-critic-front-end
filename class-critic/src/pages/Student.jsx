@@ -81,7 +81,7 @@ export default function Student() {
                   {data.overallRatings && (
                     
                       <Star
-                        width="35"
+                        width="45"
                         score={data.overallRatings.totalRating.toFixed(1)}
                       />
                     
