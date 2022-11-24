@@ -47,7 +47,7 @@ const Header = (props) => {
         <SearchBar
           className="my-auto w-52 sm:w-96 ml-2 md:ml-5 border-2 border-black mr-0 md:mr-10"
           onRequestSearch={(e) => {
-            search(e).then((resp) => {
+            search(e).then((resp) => {              
               props.setData(resp.data);
             });
           }}

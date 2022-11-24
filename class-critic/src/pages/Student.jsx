@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import ScoreChart from "../components/ScoreChart";
 import Star from "../components/Star";
+import Rate from "../components/Rate";
 import { useNavigate } from "react-router-dom";
 
 export default function Student() {
+  const [showRate, setShowRate] = useState(false);
+
+  useEffect(() => {
+    //render
+  }, [showRate]);
+
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state.data;
+
   return (
     <div className="bg-indigo-900 h-screen">
       <div className="bg-indigo-900 text-white h-screen flex flex-col">
@@ -88,13 +96,22 @@ export default function Student() {
               <button
                 className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
                 onClick={() => {
-                  navigate("/");
+                  if (showRate) {
+                    setShowRate(false);
+                  } else {
+                    setShowRate(true);
+                  }
                 }}
               >
                 Rate
               </button>
             </div>
           </div>
+          {showRate && (
+            
+              <Rate data={data} />
+            
+          )}
           {data.overallRatings && (
             <div className="flex flex-row mt-5">
               <div className="flex flex-col m-auto ">
