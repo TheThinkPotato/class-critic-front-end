@@ -167,6 +167,49 @@ export async function updateUser(fName, lName, email, password) {
   }
 }
 
+export async function addStudent(
+  fName,
+  lName,
+  gender,
+  uni,
+  major,
+  ){
+  const options = {
+    path: "/student/add-student",
+  };
+
+  const url = `${URL}${options.path}`;
+
+  try {
+    const response = await axios.post(url, {
+      fName: fName,
+      lName: lName,
+      gender: gender,
+      uni: uni,
+      major: major,
+      timeout: 20000,
+    });
+
+    if (response.status !== 200) {
+      console.log("error:", response.status);
+      return {
+        error: true,
+        status: response.status,
+        message: response.message,
+      };
+    } else {
+      return {response};
+    }
+  } catch (error) {
+    console.log("error:", error);
+    return {
+      error: true,
+      status: error.response.status,
+      message: error.response.data.message,
+    };
+  }
+}
+
 
 export async function addRating(student,communication,attendance,workmanship,focus,organization,niceness,owner) {
   const options = {
@@ -277,6 +320,46 @@ export async function getStudent(student) {
       };
     } else {
       return response;
+    }
+  } catch (error) {
+    console.log("error:", error);
+    return {
+      error: true,
+      status: 500,
+      message: "Internal api server error",
+    };
+  }
+}
+
+
+// http://127.0.0.1/student/get-student?lookupName=Jim Nobody QUT
+export async function getUnis(student) {
+  const options = {
+    path: "/uni/get-all",    
+  };
+
+  const APIheader = {};
+  const APIparams = {};
+
+  const url = `${URL}${options.path}`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: APIheader,
+      params: APIparams,
+      timeout: 20000,
+    });
+    console.log("res:", response);
+
+    if (response.status !== 200) {
+      console.log("error:", response.status);
+      return {
+        error: true,
+        status: response.status,
+        message: response.message,
+      };
+    } else {
+      return response.data;
     }
   } catch (error) {
     console.log("error:", error);
