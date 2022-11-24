@@ -98,7 +98,7 @@ export default function Student() {
 
               {localStorage.getItem("email") && (
                 <button
-                  className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded teamWork:outline-none teamWork:shadow-outline"
+                  className="ml-6 mt-36 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded teamWork:outline-none teamWork:shadow-outline"
                   onClick={() => {
                     if (showRateWindow) {
                       setShowRateWindow(false);
