@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { addRating } from "../data/apiCalls";
+import { addRating, updateRating } from "../data/apiCalls";
 import Rating from "../components/Rating";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getStudent } from "../data/apiCalls";
 
 function setUserRatings(email, dataArray)
 {  
-  let ratings = [];
+  let ratings = [];  
+  let index = null;
+  if (dataArray !== undefined)
+{
   for (let i = 0; i < dataArray.length; i++)
   {
     if (dataArray[i].owner === email)
     {
-      ratings.push(dataArray[i]);
+      ratings.push(dataArray[i]);           
+      index = i;          
     }
   }
-
-  if (ratings.length > 0)
-    return ratings[0];
-  else
-    return {communication: 0, attendance: 0, workmanship: 0, focus: 0, organization: 0, niceness: 0};
 }
-
+  if (ratings.length > 0)
+  {            
+    ratings[0].index = index;
+    return ratings[0];
+  }
+  else
+    return {communication: 0, attendance: 0, workmanship: 0, focus: 0, organization: 0, niceness: 0, index: 0, new: true};
+}
 
 
 const Rate = (props) => {    
@@ -28,7 +34,7 @@ const Rate = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
   
   const previousRatings = setUserRatings(localStorage.getItem("email"), data.ratings);
-  
+
   const [communicationValue, setCommunicationValue] = useState(previousRatings.communication);
   const [attendanceValue, setAttendanceValue] = useState(previousRatings.attendance);
   const [workmanshipValue, setWorkmanshipValue] = useState(previousRatings.workmanship);
@@ -42,6 +48,7 @@ const Rate = (props) => {
   };
 
   async function submitData() {
+    let result = null;
     if (
       !(
         communicationValue === 0 ||
@@ -52,7 +59,8 @@ const Rate = (props) => {
         nicenessValue === 0
       )
     ) {
-      const result = await addRating(
+      if(previousRatings.new){
+      result = await addRating(
         data.lookupName,
         communicationValue,
         attendanceValue,
@@ -61,7 +69,20 @@ const Rate = (props) => {
         organisationValue,
         nicenessValue,
         localStorage.getItem("email")
-      );
+      )}
+      else{
+        result = await updateRating(
+          data.lookupName,
+          communicationValue,
+          attendanceValue,
+          workmanshipValue,
+          focusValue,
+          organisationValue,
+          nicenessValue,
+          data.index,
+          localStorage.getItem("email")
+        )
+        }
       setErrorMessage(result.message);
       return result;
     } else setErrorMessage("Fill out all the categories.");

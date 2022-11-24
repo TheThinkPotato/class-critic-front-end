@@ -207,6 +207,47 @@ export async function addRating(student,communication,attendance,workmanship,foc
   }
 }
 
+
+export async function updateRating(student,communication,attendance,workmanship,focus,organization,niceness,owner,index) {
+  const options = {
+    path: "/student/update-rating",
+    query: "?student=",
+  };
+
+  const APIheader = {};
+  const APIparams = {};
+
+  const url = `${URL}${options.path}${options.query}${student}&communication=${communication}&attendance=${attendance}&workmanship=${workmanship}&focus=${focus}&organization=${organization}&niceness=${niceness}&owner=${owner}&&owner=${index}`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: APIheader,
+      params: APIparams,
+      timeout: 20000,
+    });
+    console.log("res:", response);
+
+    if (response.status !== 200) {
+      console.log("error:", response.status);
+      return {
+        error: true,
+        status: response.status,
+        message: response.message,
+      };
+    } else {
+      return response;
+    }
+  } catch (error) {
+    console.log("error:", error);
+    return {
+      error: true,
+      status: error.response.status,
+      message: error.response.data.message,
+    };
+  }
+}
+
+
 // http://127.0.0.1/student/get-student?lookupName=Jim Nobody QUT
 export async function getStudent(student) {
   const options = {
