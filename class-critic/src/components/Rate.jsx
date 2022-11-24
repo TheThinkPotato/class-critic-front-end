@@ -4,43 +4,54 @@ import Rating from "../components/Rating";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getStudent } from "../data/apiCalls";
 
-function setUserRatings(email, dataArray)
-{  
-  let ratings = [];  
+function setUserRatings(email, dataArray) {
+  let ratings = [];
   let index = null;
-  if (dataArray !== undefined)
-{
-  for (let i = 0; i < dataArray.length; i++)
-  {
-    if (dataArray[i].owner === email)
-    {
-      ratings.push(dataArray[i]);           
-      index = i;          
+  if (dataArray !== undefined) {
+    for (let i = 0; i < dataArray.length; i++) {
+      if (dataArray[i].owner === email) {
+        ratings.push(dataArray[i]);
+        index = i;
+      }
     }
   }
-}
-  if (ratings.length > 0)
-  {            
+  if (ratings.length > 0) {
     ratings[0].index = index;
     return ratings[0];
-  }
-  else
-    return {communication: 0, participation: 0, qualityOfWork: 0, teamWork: 0, punctual: 0, attitude: 0, index: 0, new: true};
+  } else
+    return {
+      communication: 0,
+      participation: 0,
+      qualityOfWork: 0,
+      teamWork: 0,
+      punctual: 0,
+      attitude: 0,
+      index: 0,
+      new: true,
+    };
 }
 
-
-const Rate = (props) => {    
+const Rate = (props) => {
   const data = props.data;
   const [errorMessage, setErrorMessage] = useState("");
-  
-  const previousRatings = setUserRatings(localStorage.getItem("email"), data.ratings);
 
-  const [communicationValue, setCommunicationValue] = useState(previousRatings.communication);
-  const [participationValue, setparticipationValue] = useState(previousRatings.participation);
-  const [qualityOfWorkValue, setqualityOfWorkValue] = useState(previousRatings.qualityOfWork);
-  const [teamWorkValue, setteamWorkValue] = useState(previousRatings.teamWork);
-  const [punctualValue, setpunctualValue] = useState(previousRatings.punctual);
-  const [attitudeValue, setattitudeValue] = useState(previousRatings.attitude);
+  const previousRatings = setUserRatings(
+    localStorage.getItem("email"),
+    data.ratings
+  );
+
+  const [communicationValue, setCommunicationValue] = useState(
+    previousRatings.communication
+  );
+  const [participationValue, setParticipationValue] = useState(
+    previousRatings.participation
+  );
+  const [qualityOfWorkValue, setQualityOfWorkValue] = useState(
+    previousRatings.qualityOfWork
+  );
+  const [teamWorkValue, setTeamWorkValue] = useState(previousRatings.teamWork);
+  const [punctualValue, setPunctualValue] = useState(previousRatings.punctual);
+  const [attitudeValue, setAttitudeValue] = useState(previousRatings.attitude);
 
   const navigate = useNavigate();
   const navigateStudent = () => {
@@ -59,18 +70,18 @@ const Rate = (props) => {
         attitudeValue === 0
       )
     ) {
-      if(previousRatings.new){
-      result = await addRating(
-        data.lookupName,
-        communicationValue,
-        participationValue,
-        qualityOfWorkValue,
-        teamWorkValue,
-        punctualValue,
-        attitudeValue,
-        localStorage.getItem("email")
-      )}
-      else{
+      if (previousRatings.new) {
+        result = await addRating(
+          data.lookupName,
+          communicationValue,
+          participationValue,
+          qualityOfWorkValue,
+          teamWorkValue,
+          punctualValue,
+          attitudeValue,
+          localStorage.getItem("email")
+        );
+      } else {
         result = await updateRating(
           data.lookupName,
           communicationValue,
@@ -81,18 +92,13 @@ const Rate = (props) => {
           attitudeValue,
           data.index,
           localStorage.getItem("email")
-        )
-        }
+        );
+      }
       setErrorMessage(result.message);
       return result;
     } else setErrorMessage("Fill out all the categories.");
     return;
   }
-
-  
-  
-
-
 
   useEffect(() => {
     //render
@@ -115,16 +121,16 @@ const Rate = (props) => {
                 setValue={setCommunicationValue}
               />
               <Rating
-                title="participation"
+                title="Participation"
                 name="participation"
                 value={participationValue}
-                setValue={setparticipationValue}
+                setValue={setParticipationValue}
               />
               <Rating
                 title="Quality Of Work"
                 name="qualityOfWork"
                 value={qualityOfWorkValue}
-                setValue={setqualityOfWorkValue}
+                setValue={setQualityOfWorkValue}
               />
             </div>
 
@@ -133,19 +139,19 @@ const Rate = (props) => {
                 title="Team Work"
                 name="teamWork"
                 value={teamWorkValue}
-                setValue={setteamWorkValue}
+                setValue={setTeamWorkValue}
               />
               <Rating
-                title="Punctual"
+                title="Punctuality"
                 name="punctual"
                 value={punctualValue}
-                setValue={setpunctualValue}
+                setValue={setPunctualValue}
               />
               <Rating
                 title="Attitude"
                 name="attitude"
                 value={attitudeValue}
-                setValue={setattitudeValue}
+                setValue={setAttitudeValue}
               />
             </div>
           </form>
@@ -165,7 +171,7 @@ const Rate = (props) => {
                     if (res.status === 200) {
                       getStudent(data.lookupName).then((res) => {
                         props.setData(res.data);
-                      });                      
+                      });
                       props.setShowRateWindow(false);
                     }
                   }

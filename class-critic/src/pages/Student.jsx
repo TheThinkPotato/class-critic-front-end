@@ -144,7 +144,7 @@ export default function Student() {
                 </div>
                 <Star score={data.overallRatings.teamWork.toFixed(1)} />
                 <div className="flex flex-row space-x-3 mt-4">
-                  <h2 className="font-bold mb-1">Punctual:</h2>
+                  <h2 className="font-bold mb-1">Punctuality:</h2>
                   <p>{data.overallRatings.punctual.toFixed(2)}</p>
                 </div>
 
