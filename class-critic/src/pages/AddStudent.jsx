@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import DropDown from "../components/DropDown";
 import { getUnis, addStudent } from "../data/apiCalls";
 import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 export default function AddStudent() {
   const genderOptions = ["Male", "Female", "Other"];
@@ -15,14 +15,17 @@ export default function AddStudent() {
   const [uni, setUni] = useState("");
   const [major, setMajor] = useState("");
 
-  useEffect (() => {    
-    getUnis().then((resp) => {
-        resp = resp.data.map((uni) => uni.name);
-        setUniOptions(resp);
-    });
-    }, []);
+  const navigate = useNavigate();
 
-  
+  const [error, setError] = useState("false");
+
+  useEffect(() => {
+    getUnis().then((resp) => {
+      resp = resp.data.map((uni) => uni.name);
+      setUniOptions(resp);
+    });
+  }, []);
+
   return (
     <div className="bg-indigo-900 h-screen">
       <div className="bg-indigo-900 text-white h-screen flex flex-col">
@@ -74,7 +77,6 @@ export default function AddStudent() {
                 setValue={setUni}
                 name={"uniSelect"}
               />
-
             </div>
             <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
               <h2 className="text-left font-semibold">Major:</h2>
@@ -89,21 +91,49 @@ export default function AddStudent() {
             </div>
           </div>
           <div className="mt-8 flex flex-col">
-            <button
-              className="w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
-              onClick={() => {
-                addStudent(fName, lName, gender, uni, major).then((res) => {
-                  if (res.error) {
-                    // setMessage(res.message);
+            {error !== "false" && (
+              <div className="bg-red-600 text-white text-center p-2 mb-10 w-80 rounded mx-auto">
+                <h2>Error:</h2>
+                <p>{error}</p>
+              </div>
+            )}
+            <div className="flex flex-row justify-center">
+              <button
+                className="mx-3 w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Back
+              </button>
+              <button
+                className="mx-3 w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => {
+                  if (
+                    !(
+                      fName === "" ||
+                      lName === "" ||
+                      gender === "" ||
+                      uni === "" ||
+                      major === ""
+                    )
+                  ) {
+                    addStudent(fName, lName, gender, uni, major).then((res) => {
+                      if (res.error) {
+                        // setMessage(res.message);
+                      } else {
+                        navigate("/");
+                        // setMessage("");
+                      }
+                    });
                   } else {
-                    
-                    // setMessage("");
+                    setError("Empty Fields.");
                   }
-                });
-              }}
-            >
-              Add
-            </button>
+                }}
+              >
+                Add
+              </button>
+            </div>
           </div>
         </div>
       </div>

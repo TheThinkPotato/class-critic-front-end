@@ -2,12 +2,15 @@ import React from "react";
 import Header from "../components/Header";
 import { updateUser } from "../data/apiCalls";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [password, setPassword] = useState("");
   const [fName, setfName] = useState(localStorage.getItem("fName") || "");
   const [lName, setlName] = useState(localStorage.getItem("lName") || "");
+
+  const navigate = useNavigate();
 
   return (
     <div className="bg-indigo-900 h-screen">
@@ -63,9 +66,18 @@ export default function Login() {
               />
             </div>
           </div>
-          <div className="mt-8 flex flex-col">
+          <div className="flex flex-row justify-center mt-8">
             <button
-              className="w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+              className="mx-3 w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Back
+            </button>
+
+            <button
+              className="mx-3 w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
               onClick={() => {
                 updateUser(fName, lName, email, password).then((res) => {
                   if (res.error) {
