@@ -97,7 +97,7 @@ export default function Student() {
               
               { localStorage.getItem("email") && (
               <button
-                className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
+                className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded teamWork:outline-none teamWork:shadow-outline"
                 onClick={() => {
                   if (showRateWindow) {
                     setShowRateWindow(false);                    
@@ -127,40 +127,40 @@ export default function Student() {
                 </div>
                 <Star score={data.overallRatings.communication.toFixed(1)} />
                 <div className="flex flex-row space-x-3 mt-4">
-                  <h2 className="font-bold mb-1">Attendance:</h2>
-                  <p>{data.overallRatings.attendance.toFixed(2)}</p>
+                  <h2 className="font-bold mb-1">Participation:</h2>
+                  <p>{data.overallRatings.participation.toFixed(2)}</p>
                 </div>
-                <Star score={data.overallRatings.attendance.toFixed(1)} />
+                <Star score={data.overallRatings.participation.toFixed(1)} />
                 <div className="flex flex-row space-x-3 mt-4">
-                  <h2 className="font-bold mb-1">Workmanship:</h2>
-                  <p>{data.overallRatings.workmanship.toFixed(2)}</p>
+                  <h2 className="font-bold mb-1">Quality Of Work:</h2>
+                  <p>{data.overallRatings.qualityOfWork.toFixed(2)}</p>
                 </div>
-                <Star score={data.overallRatings.workmanship.toFixed(1)} />
+                <Star score={data.overallRatings.qualityOfWork.toFixed(1)} />
               </div>
               <div className="flex flex-col m-auto">
                 <div className="flex flex-row space-x-3">
-                  <h2 className="font-bold mb-1">Focus:</h2>
-                  <p>{data.overallRatings.focus.toFixed(2)}</p>
+                  <h2 className="font-bold mb-1">TeamWork:</h2>
+                  <p>{data.overallRatings.teamWork.toFixed(2)}</p>
                 </div>
-                <Star score={data.overallRatings.focus.toFixed(1)} />
+                <Star score={data.overallRatings.teamWork.toFixed(1)} />
                 <div className="flex flex-row space-x-3 mt-4">
-                  <h2 className="font-bold mb-1">Organisation:</h2>
-                  <p>{data.overallRatings.organization.toFixed(2)}</p>
+                  <h2 className="font-bold mb-1">Punctual:</h2>
+                  <p>{data.overallRatings.punctual.toFixed(2)}</p>
                 </div>
 
-                <Star score={data.overallRatings.organization.toFixed(1)} />
+                <Star score={data.overallRatings.punctual.toFixed(1)} />
                 <div className="flex flex-row space-x-3 mt-4">
-                  <h2 className="font-bold mb-1">Kindness:</h2>
-                  <p>{data.overallRatings.niceness.toFixed(2)}</p>
+                  <h2 className="font-bold mb-1">Attitude:</h2>
+                  <p>{data.overallRatings.attitude.toFixed(2)}</p>
                 </div>
 
-                <Star score={data.overallRatings.niceness.toFixed(1)} />
+                <Star score={data.overallRatings.attitude.toFixed(1)} />
               </div>
             </div>
           )}
           <div className="flex flex-row w-80 mx-auto ">
             <button
-              className="mt-5 mx-auto px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
+              className="mt-5 mx-auto px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded teamWork:outline-none teamWork:shadow-outline"
               onClick={() => {
                 navigate("/");
               }}

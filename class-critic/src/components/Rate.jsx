@@ -25,7 +25,7 @@ function setUserRatings(email, dataArray)
     return ratings[0];
   }
   else
-    return {communication: 0, attendance: 0, workmanship: 0, focus: 0, organization: 0, niceness: 0, index: 0, new: true};
+    return {communication: 0, participation: 0, qualityOfWork: 0, teamWork: 0, punctual: 0, attitude: 0, index: 0, new: true};
 }
 
 
@@ -36,11 +36,11 @@ const Rate = (props) => {
   const previousRatings = setUserRatings(localStorage.getItem("email"), data.ratings);
 
   const [communicationValue, setCommunicationValue] = useState(previousRatings.communication);
-  const [attendanceValue, setAttendanceValue] = useState(previousRatings.attendance);
-  const [workmanshipValue, setWorkmanshipValue] = useState(previousRatings.workmanship);
-  const [focusValue, setFocusValue] = useState(previousRatings.focus);
-  const [organisationValue, setOrganisationValue] = useState(previousRatings.organization);
-  const [nicenessValue, setNicenessValue] = useState(previousRatings.niceness);
+  const [participationValue, setparticipationValue] = useState(previousRatings.participation);
+  const [qualityOfWorkValue, setqualityOfWorkValue] = useState(previousRatings.qualityOfWork);
+  const [teamWorkValue, setteamWorkValue] = useState(previousRatings.teamWork);
+  const [punctualValue, setpunctualValue] = useState(previousRatings.punctual);
+  const [attitudeValue, setattitudeValue] = useState(previousRatings.attitude);
 
   const navigate = useNavigate();
   const navigateStudent = () => {
@@ -52,33 +52,33 @@ const Rate = (props) => {
     if (
       !(
         communicationValue === 0 ||
-        attendanceValue === 0 ||
-        workmanshipValue === 0 ||
-        focusValue === 0 ||
-        organisationValue === 0 ||
-        nicenessValue === 0
+        participationValue === 0 ||
+        qualityOfWorkValue === 0 ||
+        teamWorkValue === 0 ||
+        punctualValue === 0 ||
+        attitudeValue === 0
       )
     ) {
       if(previousRatings.new){
       result = await addRating(
         data.lookupName,
         communicationValue,
-        attendanceValue,
-        workmanshipValue,
-        focusValue,
-        organisationValue,
-        nicenessValue,
+        participationValue,
+        qualityOfWorkValue,
+        teamWorkValue,
+        punctualValue,
+        attitudeValue,
         localStorage.getItem("email")
       )}
       else{
         result = await updateRating(
           data.lookupName,
           communicationValue,
-          attendanceValue,
-          workmanshipValue,
-          focusValue,
-          organisationValue,
-          nicenessValue,
+          participationValue,
+          qualityOfWorkValue,
+          teamWorkValue,
+          punctualValue,
+          attitudeValue,
           data.index,
           localStorage.getItem("email")
         )
@@ -115,37 +115,37 @@ const Rate = (props) => {
                 setValue={setCommunicationValue}
               />
               <Rating
-                title="Attendance"
-                name="Attendance"
-                value={attendanceValue}
-                setValue={setAttendanceValue}
+                title="participation"
+                name="participation"
+                value={participationValue}
+                setValue={setparticipationValue}
               />
               <Rating
-                title="Workmanship"
-                name="Wokmanship"
-                value={workmanshipValue}
-                setValue={setWorkmanshipValue}
+                title="Quality Of Work"
+                name="qualityOfWork"
+                value={qualityOfWorkValue}
+                setValue={setqualityOfWorkValue}
               />
             </div>
 
             <div className="flex flex-col">
               <Rating
-                title="Focus"
-                name="Focus"
-                value={focusValue}
-                setValue={setFocusValue}
+                title="Team Work"
+                name="teamWork"
+                value={teamWorkValue}
+                setValue={setteamWorkValue}
               />
               <Rating
-                title="Organisation"
-                name="Organisation"
-                value={organisationValue}
-                setValue={setOrganisationValue}
+                title="Punctual"
+                name="punctual"
+                value={punctualValue}
+                setValue={setpunctualValue}
               />
               <Rating
-                title="Kindness"
-                name="Kindness"
-                value={nicenessValue}
-                setValue={setNicenessValue}
+                title="Attitude"
+                name="attitude"
+                value={attitudeValue}
+                setValue={setattitudeValue}
               />
             </div>
           </form>
@@ -158,7 +158,7 @@ const Rate = (props) => {
             )}
 
             <button
-              className="px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
+              className="px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded teamWork:outline-none teamWork:shadow-outline"
               onClick={() => {
                 submitData().then((res) => {
                   if (res) {
