@@ -103,7 +103,7 @@ const Header = (props) => {
                 {isLoggedIn && (
                   <Menu.Item>
                     {({ active }) => (
-                      <Link to="/">
+                      <Link to="/AddStudent">
                         <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
                           Add student review
                         </p>

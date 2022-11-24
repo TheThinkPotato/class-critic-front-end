@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Account from "./pages/Account";
+import AddStudent from "./pages/AddStudent";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import Register from "./pages/Register";
@@ -19,6 +20,7 @@ root.render(
       <Routes>        
         <Route path="/" element={<Home />} />
         <Route path="/Account" element={<Account />} />
+        <Route path="/AddStudent" element={<AddStudent />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Student" element={<Student />} />

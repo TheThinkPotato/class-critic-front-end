@@ -94,7 +94,8 @@ export default function Student() {
                   score={data.overallRatings.totalRating.toFixed(3)}
                 />
               )}
-
+              
+              { localStorage.getItem("email") && (
               <button
                 className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
                 onClick={() => {
@@ -107,6 +108,9 @@ export default function Student() {
               >
                 Rate
               </button>
+              )}
+              
+
             </div>
           </div>
           {showRateWindow && (
