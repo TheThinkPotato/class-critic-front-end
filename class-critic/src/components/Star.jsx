@@ -2,15 +2,12 @@ import Star from "react-star-ratings";
 
 const StarRatings = (props) => {
   const rating = props.score;
-
-  function setState(newRating) {
-    rating = newRating;
-  }
+  const width = props.width || "45";
 
   return (
     <div className="flex-col self-center">
       <Star    
-        starDimension="45px"
+        starDimension={width}
         rating={Number(rating)}
         starEmptyColor="#d7d8d8"
         starRatedColor="#229df9"

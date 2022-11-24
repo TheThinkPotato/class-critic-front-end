@@ -2,17 +2,17 @@ import Chart from "react-apexcharts";
 
 const RadialBar = (props) => {
   let scorePercent = ((props.score / 5) * 100).toFixed(2);
+  const width = props.width || 180;
 
   function checkScore(score) {
-    
-    if (score < 0.01) {
-      return;
+    if (typeof score === "number") {
+      return "-";
     } else {
-        score = 5*score/100;
-        return score.toFixed(2);
+      score = (5 * score) / 100;
+      return score.toFixed(1);
     }
   }
-  
+
   if (props.score < 0.01) {
     scorePercent = 1;
   }
@@ -51,7 +51,7 @@ const RadialBar = (props) => {
               fontSize: "22px",
               fontFamily: undefined,
               color: undefined,
-              offsetY: -10,
+              offsetY: -4,
             },
             value: {
               show: true,
@@ -59,11 +59,9 @@ const RadialBar = (props) => {
               fontFamily: undefined,
               color: undefined,
               offsetY: 0,
-              //   formatter: "22"
-              //   function (val) {
-              //     return val + "%";
-              //   }
-              // ,
+              // formatter: function (val) {
+              //   return val + "%";
+              // },
             },
             total: {
               show: true,
@@ -74,8 +72,8 @@ const RadialBar = (props) => {
                   // w.globals.seriesTotals.reduce((a, b) => {
                   //   return a + b;
                   // }, 0) /
-                (checkScore(w.globals.series))
-                    // ((w.globals.series * 5) / 100).toFixed(2)                  
+                  checkScore(w.globals.series[0])
+                  // ((w.globals.series * 5) / 100).toFixed(2)
                 );
               },
             },
@@ -93,7 +91,7 @@ const RadialBar = (props) => {
         options={state.options}
         series={state.series}
         type="radialBar"
-        width="180"
+        width={width}
       />
     </div>
   );
