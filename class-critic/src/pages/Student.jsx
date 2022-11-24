@@ -7,15 +7,16 @@ import Rate from "../components/Rate";
 import { useNavigate } from "react-router-dom";
 
 export default function Student() {
-  const [showRate, setShowRate] = useState(false);
-
-  useEffect(() => {
-    //render
-  }, [showRate]);
-
+  const [showRateWindow, setShowRateWindow] = useState(false);  
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state.data;
+  const [data, setData] = useState(location.state.data);
+
+  useEffect(() => {
+    //render    
+  }, [showRateWindow]);
+
+
 
   return (
     <div className="bg-indigo-900 h-screen">
@@ -96,10 +97,10 @@ export default function Student() {
               <button
                 className="ml-6 mt-44 px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline"
                 onClick={() => {
-                  if (showRate) {
-                    setShowRate(false);
+                  if (showRateWindow) {
+                    setShowRateWindow(false);                    
                   } else {
-                    setShowRate(true);
+                    setShowRateWindow(true);
                   }
                 }}
               >
@@ -107,9 +108,9 @@ export default function Student() {
               </button>
             </div>
           </div>
-          {showRate && (
+          {showRateWindow && (
             
-              <Rate data={data} />
+              <Rate setShowRateWindow={setShowRateWindow} data={data} setData={setData}/>
             
           )}
           {data.overallRatings && (

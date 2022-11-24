@@ -14,7 +14,7 @@ const FrontCard = (props) => {
 
       <div className="flex">
       {props.value === "2" ? (
-          <p className="ml-2 text-orange-500 font-normal mr-2">Bad</p>
+          <p className="ml-2 text-amber-500 font-normal mr-2">Bad</p>
         ) : props.value === "1" ? (
           <p className="ml-2 text-red-500 font-normal mr-2">Bad</p>
         ) : (
