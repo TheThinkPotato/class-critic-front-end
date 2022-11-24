@@ -211,7 +211,7 @@ export async function addStudent(
 }
 
 
-export async function addRating(student,communication,attendance,workmanship,focus,organization,niceness,owner) {
+export async function addRating(student,communication,participation,qualityOfWork,teamWork,punctual,attitude,owner) {
   const options = {
     path: "/student/add-rating",
     query: "?student=",
@@ -220,7 +220,7 @@ export async function addRating(student,communication,attendance,workmanship,foc
   const APIheader = {};
   const APIparams = {};
 
-  const url = `${URL}${options.path}${options.query}${student}&communication=${communication}&attendance=${attendance}&workmanship=${workmanship}&focus=${focus}&organization=${organization}&niceness=${niceness}&owner=${owner}`;
+  const url = `${URL}${options.path}${options.query}${student}&communication=${communication}&participation=${participation}&qualityOfWork=${qualityOfWork}&teamWork=${teamWork}&punctual=${punctual}&attitude=${attitude}&owner=${owner}`;
 
   try {
     const response = await axios.get(url, {
@@ -251,7 +251,7 @@ export async function addRating(student,communication,attendance,workmanship,foc
 }
 
 
-export async function updateRating(student,communication,attendance,workmanship,focus,organization,niceness,owner,index) {
+export async function updateRating(student,communication,participation,qualityOfWork,teamWork,punctual,attitude,owner,index) {
   const options = {
     path: "/student/update-rating",
     query: "?student=",
@@ -260,7 +260,7 @@ export async function updateRating(student,communication,attendance,workmanship,
   const APIheader = {};
   const APIparams = {};
 
-  const url = `${URL}${options.path}${options.query}${student}&communication=${communication}&attendance=${attendance}&workmanship=${workmanship}&focus=${focus}&organization=${organization}&niceness=${niceness}&owner=${owner}&&owner=${index}`;
+  const url = `${URL}${options.path}${options.query}${student}&communication=${communication}&participation=${participation}&qualityOfWork=${qualityOfWork}&teamWork=${teamWork}&punctual=${punctual}&attitude=${attitude}&owner=${owner}&&owner=${index}`;
 
   try {
     const response = await axios.get(url, {
