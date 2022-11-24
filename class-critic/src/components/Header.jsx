@@ -105,7 +105,7 @@ const Header = (props) => {
                     {({ active }) => (
                       <Link to="/AddStudent">
                         <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                          Add student
+                          Add Student
                         </p>
                       </Link>
                     )}
