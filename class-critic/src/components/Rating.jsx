@@ -31,8 +31,7 @@ const FrontCard = (props) => {
           checked={props.value == 1 ? "checked" : null}        
         />
         <label
-          class="star"
-          for="star1"
+          className="star"
           title="Awesome"
           aria-hidden="true"
         ></label>
@@ -46,8 +45,7 @@ const FrontCard = (props) => {
           checked={props.value == 2 ? "checked" : null}
         />
         <label
-          class="star"
-          for="star2"
+          className="star"
           title="Great"
           aria-hidden="true"
         ></label>
@@ -61,8 +59,7 @@ const FrontCard = (props) => {
           checked={props.value == 3 ? "checked" : null}
         />
         <label
-          class="star"
-          for="star3"
+          className="star"
           title="Very good"
           aria-hidden="true"
         ></label>
@@ -75,7 +72,7 @@ const FrontCard = (props) => {
           onChange={handleChange}
           checked={props.value == 4 ? "checked" : null}
         />
-        <label class="star" for="star4" title="Good" aria-hidden="true"></label>
+        <label className="star" title="Good" aria-hidden="true"></label>
         <input
           type="radio"
           id={`${props.name}-star5`}
@@ -94,7 +91,7 @@ const FrontCard = (props) => {
           <p className="ml-2 text-gray-500 font-light">Good</p>
         )}
 
-        <label class="star" for="star5" title="Bad" aria-hidden="true"></label>
+        <label className="star" title="Bad" aria-hidden="true"></label>
       </div>
     </div>
   );

@@ -52,26 +52,26 @@ export default function Student() {
                   <tbody>
                     <tr>
                       <td className="font-bold">Name:</td>
-                      <td className="pl-28">
+                      <td className="pl-24 xl:pl-36">
                         {data.fName} {data.lName}
                       </td>
                     </tr>
                     <tr>
                       <td className="font-bold">College:</td>
-                      <td className="pl-28">{data.uni}</td>
+                      <td className="pl-24 xl:pl-36">{data.uni}</td>
                     </tr>
                     <tr>
                       <td className="font-bold">Major:</td>
-                      <td className="pl-28">{data.major}</td>
+                      <td className="pl-24 xl:pl-36">{data.major}</td>
                     </tr>
                     <tr>
                       <td className="font-bold">Gender:</td>
-                      <td className="pl-28">{data.gender}</td>
+                      <td className="pl-24 xl:pl-36">{data.gender}</td>
                     </tr>
                     {data.overallRatings && (
                       <tr>
                         <td className="font-bold pt-5">Overall Score:</td>
-                        <td className="pl-28 pt-5">
+                        <td className="pl-24 xl:pl-36 pt-5">
                           {data.overallRatings.totalRating.toFixed(2)}
                         </td>
                       </tr>

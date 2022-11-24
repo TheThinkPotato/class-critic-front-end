@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { addRating, updateRating } from "../data/apiCalls";
 import Rating from "../components/Rating";
-import { useNavigate, useLocation } from "react-router-dom";
 import { getStudent } from "../data/apiCalls";
 
 function setUserRatings(email, dataArray) {
@@ -51,12 +50,7 @@ const Rate = (props) => {
   );
   const [teamWorkValue, setTeamWorkValue] = useState(previousRatings.teamWork);
   const [punctualValue, setPunctualValue] = useState(previousRatings.punctual);
-  const [attitudeValue, setAttitudeValue] = useState(previousRatings.attitude);
-
-  const navigate = useNavigate();
-  const navigateStudent = () => {
-    navigate(`/Student`, { state: { data: data } });
-  };
+  const [attitudeValue, setAttitudeValue] = useState(previousRatings.attitude);    
 
   async function submitData() {
     let result = null;
