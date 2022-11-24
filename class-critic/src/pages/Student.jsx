@@ -6,6 +6,7 @@ import Star from "../components/Star";
 import Rate from "../components/Rate";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Student() {
   const [showRateWindow, setShowRateWindow] = useState(false);  
   const navigate = useNavigate();

@@ -4,9 +4,42 @@ import Rating from "../components/Rating";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getStudent } from "../data/apiCalls";
 
-const Rate = (props) => {
+function setUserRatings(email, dataArray)
+{  
+  let ratings = [];
+  for (let i = 0; i < dataArray.length; i++)
+  {
+    if (dataArray[i].owner === email)
+    {
+      ratings.push(dataArray[i]);
+    }
+  }
+
+  if (ratings.length > 0)
+    return ratings[0];
+  else
+    return {communication: 0, attendance: 0, workmanship: 0, focus: 0, organization: 0, niceness: 0};
+}
+
+
+
+const Rate = (props) => {    
   const data = props.data;
   const [errorMessage, setErrorMessage] = useState("");
+  
+  const previousRatings = setUserRatings(localStorage.getItem("email"), data.ratings);
+  
+  const [communicationValue, setCommunicationValue] = useState(previousRatings.communication);
+  const [attendanceValue, setAttendanceValue] = useState(previousRatings.attendance);
+  const [workmanshipValue, setWorkmanshipValue] = useState(previousRatings.workmanship);
+  const [focusValue, setFocusValue] = useState(previousRatings.focus);
+  const [organisationValue, setOrganisationValue] = useState(previousRatings.organization);
+  const [nicenessValue, setNicenessValue] = useState(previousRatings.niceness);
+
+  const navigate = useNavigate();
+  const navigateStudent = () => {
+    navigate(`/Student`, { state: { data: data } });
+  };
 
   async function submitData() {
     if (
@@ -35,17 +68,10 @@ const Rate = (props) => {
     return;
   }
 
-  const navigate = useNavigate();
-  const navigateStudent = () => {
-    navigate(`/Student`, { state: { data: data } });
-  };
+  
+  
 
-  const [communicationValue, setCommunicationValue] = useState(3);
-  const [attendanceValue, setAttendanceValue] = useState(0);
-  const [workmanshipValue, setWorkmanshipValue] = useState(0);
-  const [focusValue, setFocusValue] = useState(0);
-  const [organisationValue, setOrganisationValue] = useState(0);
-  const [nicenessValue, setNicenessValue] = useState(0);
+
 
   useEffect(() => {
     //render
@@ -118,8 +144,7 @@ const Rate = (props) => {
                     if (res.status === 200) {
                       getStudent(data.lookupName).then((res) => {
                         props.setData(res.data);
-                      });
-                      console.log("-->>", props.data);
+                      });                      
                       props.setShowRateWindow(false);
                     }
                   }
