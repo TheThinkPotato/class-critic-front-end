@@ -4,6 +4,7 @@ import DropDown from "../components/DropDown";
 import { getUnis, addStudent } from "../data/apiCalls";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { inputCheckOk, swearCheckOk } from "../functions/inputCleanup";
 
 export default function AddStudent() {
   const genderOptions = ["Male", "Female", "Other"];
@@ -90,8 +91,8 @@ export default function AddStudent() {
         <div className="mt-8 flex flex-col">
           {error !== "false" && (
             <div className="bg-red-600 text-white text-center p-2 mb-10 w-80 rounded mx-auto">
-              <h2>Error:</h2>
-              <p>{error}</p>
+              <h2 className="font-bold">Error:</h2>
+              <p className="font-semibold">{error}</p>
             </div>
           )}
           <div className="flex flex-row justify-center">
@@ -106,15 +107,21 @@ export default function AddStudent() {
             <button
               className="mx-3 w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
               onClick={() => {
-                if (
-                  !(
-                    fName === "" ||
-                    lName === "" ||
-                    gender === "" ||
-                    uni === "" ||
-                    major === ""
-                  )
-                ) {
+                
+                if (!(
+                  fName === "" ||
+                  lName === "" ||
+                  gender === "" ||
+                  uni === "" ||
+                  major === "" ||
+                  !inputCheckOk(fName) ||
+                  !inputCheckOk(lName) ||
+                  !inputCheckOk(major) ||
+                  !swearCheckOk(fName) ||
+                  !swearCheckOk(lName) ||
+                  !swearCheckOk(major)
+
+                )) {
                   addStudent(fName, lName, gender, uni, major).then((res) => {
                     if (res.error) {
                       // setMessage(res.message);
@@ -124,7 +131,7 @@ export default function AddStudent() {
                     }
                   });
                 } else {
-                  setError("Empty Fields.");
+                  setError("Please check inputs and retry.");
                 }
               }}
             >

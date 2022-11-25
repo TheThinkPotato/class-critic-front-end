@@ -1,4 +1,5 @@
 import axios from "axios";
+import { inputCleanUp } from "../functions/inputCleanup"
 
 const PORT = "80";
 const HOST = "127.0.0.1";
@@ -8,10 +9,6 @@ axios.defaults.headers.common = {
   Authorization: `bearer ${localStorage.getItem("token")}`,
 };
 
-function inputCleanUp(input) {
-  input = input.replace(/[^a-zA-Z0-9 -.]/g, "");
-  return input;
-}
 
 // search for students
 export async function search(query) {
