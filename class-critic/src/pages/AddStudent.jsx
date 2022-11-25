@@ -5,8 +5,11 @@ import { getUnis, addStudent } from "../data/apiCalls";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { inputCheckOk, swearCheckOk } from "../functions/inputCleanup";
+import Loader from "../components/Loader";
 
 export default function AddStudent() {
+  const [loading, setLoading] = useState(false);
+
   const genderOptions = ["Male", "Female", "Other"];
 
   const [uniOptions, setUniOptions] = useState(["Select a College"]);
@@ -31,6 +34,7 @@ export default function AddStudent() {
     <div className="bg-indigo-900 text-white h-screen flex flex-col">
       <Header />
       <div className="flex flex-col text-xl border-4 border-solid border-gray-400 my-auto py-5 w-2/3 lg:w-1/2 w rounded-md bg-slate-50 text-black mx-auto">
+        {!!loading && <Loader />}
         <div className="mx-5">
           <h1 className="font-bold text-center mb-10 text-2xl">Add Student</h1>
           <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
@@ -107,23 +111,25 @@ export default function AddStudent() {
             <button
               className="mx-3 w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
               onClick={() => {
-                
-                if (!(
-                  fName === "" ||
-                  lName === "" ||
-                  gender === "" ||
-                  uni === "" ||
-                  major === "" ||
-                  !inputCheckOk(fName) ||
-                  !inputCheckOk(lName) ||
-                  !inputCheckOk(major) ||
-                  !swearCheckOk(fName) ||
-                  !swearCheckOk(lName) ||
-                  !swearCheckOk(major)
-
-                )) {
+                setLoading(true);
+                if (
+                  !(
+                    fName === "" ||
+                    lName === "" ||
+                    gender === "" ||
+                    uni === "" ||
+                    major === "" ||
+                    !inputCheckOk(fName) ||
+                    !inputCheckOk(lName) ||
+                    !inputCheckOk(major) ||
+                    !swearCheckOk(fName) ||
+                    !swearCheckOk(lName) ||
+                    !swearCheckOk(major)
+                  )
+                ) {
                   addStudent(fName, lName, gender, uni, major).then((res) => {
                     if (res.error) {
+                      setLoading(false);
                       // setMessage(res.message);
                     } else {
                       navigate("/");
@@ -131,6 +137,7 @@ export default function AddStudent() {
                     }
                   });
                 } else {
+                  setLoading(false);
                   setError("Please check inputs and retry.");
                 }
               }}
