@@ -28,13 +28,34 @@ const FrontCard = (props) => {
     <article>
       <div className="flex border-4 border-solid border-gray-400 my-2 p-5 max-w-xlg rounded-md bg-slate-50 text-black max-w-5xl mx-auto">
         {data.gender === "Male" && (
-          <img src="/man.png" className="w-16" alt="student profile" />
+          <img
+            src="/man.png"
+            className="w-16 cursor-pointer"
+            alt="student profile"
+            onClick={() => {
+              navigateStudent();
+            }}
+          />
         )}
         {data.gender === "Female" && (
-          <img src="/lady.png" className="w-16" alt="student profile" />
+          <img
+            src="/lady.png"
+            className="w-16 cursor-pointer"
+            alt="student profile"
+            onClick={() => {
+              navigateStudent();
+            }}
+          />
         )}
         {data.gender === "Other" && (
-          <img src="/user.png" className="w-16" alt="student profile" />
+          <img
+            src="/user.png"
+            className="w-16 cursor-pointer"
+            alt="student profile"
+            onClick={() => {
+              navigateStudent();
+            }}
+          />
         )}
 
         <div className="grow flex-col">
@@ -68,7 +89,14 @@ const FrontCard = (props) => {
         >
           See Details
         </button>
-        <ScoreChart score={totalRating.toFixed(3)} guid={guid} />
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            navigateStudent();
+          }}
+        >
+          <ScoreChart score={totalRating.toFixed(3)} guid={guid} />
+        </div>
       </div>
     </article>
   );
