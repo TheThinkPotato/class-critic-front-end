@@ -8,6 +8,11 @@ axios.defaults.headers.common = {
   Authorization: `bearer ${localStorage.getItem("token")}`,
 };
 
+function inputCleanUp(input) {
+  input = input.replace(/[^a-zA-Z0-9 -.]/g, "");
+  return input;
+}
+
 // search for students
 export async function search(query) {
   const options = {
@@ -17,6 +22,7 @@ export async function search(query) {
 
   const APIheader = {};
   const APIparams = {};
+  query = inputCleanUp(query);
 
   const url = `${URL}${options.path}${options.query}${query}`;
 
