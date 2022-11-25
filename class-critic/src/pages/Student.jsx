@@ -17,7 +17,6 @@ export default function Student() {
   }, [showRateWindow]);
 
   return (
-    <div className="bg-indigo-900 h-screen">
       <div className="bg-indigo-900 text-white h-screen flex flex-col">
         <Header />
         <div className="text-xl border-4 border-solid border-gray-400 my-auto py-5 w-2/3 lg:w-3/4 w rounded-md bg-slate-50 text-black mx-auto max-w-5xl">
@@ -171,6 +170,5 @@ export default function Student() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

@@ -4,7 +4,6 @@ import UserControl from "../components/UserControl";
 
 export default function Login() {
   return (
-    <div className="bg-indigo-900 h-screen">
       <div className="bg-indigo-900 text-white h-screen flex flex-col">
         <Header />
         <UserControl
@@ -13,6 +12,5 @@ export default function Login() {
           type={"register"}
         />
       </div>
-    </div>
   );
 }

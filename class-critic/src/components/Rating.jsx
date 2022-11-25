@@ -28,7 +28,7 @@ const FrontCard = (props) => {
           value={1}
           className="inline-block w-4 h-4 cursor-pointer mr-2 mb-4 mt-2"
           onChange={handleChange} 
-          checked={props.value == 1 ? "checked" : null}        
+          checked={props.value == 1 ? "checked" : ""}        
         />
         <label
           className="star"
@@ -42,7 +42,7 @@ const FrontCard = (props) => {
           value={2}
           className="inline-block w-4 h-4 cursor-pointer mx-2 mb-4 mt-2"
           onChange={handleChange}
-          checked={props.value == 2 ? "checked" : null}
+          checked={props.value == 2 ? "checked" : ""}
         />
         <label
           className="star"
@@ -56,7 +56,7 @@ const FrontCard = (props) => {
           value={3}
           className="inline-block w-4 h-4 cursor-pointer mx-2 mb-4 mt-2"
           onChange={handleChange}
-          checked={props.value == 3 ? "checked" : null}
+          checked={props.value == 3 ? "checked" : ""}
         />
         <label
           className="star"
@@ -70,7 +70,7 @@ const FrontCard = (props) => {
           value={4}
           className="inline-block w-4 h-4 cursor-pointer mx-2 mb-4 mt-2"
           onChange={handleChange}
-          checked={props.value == 4 ? "checked" : null}
+          checked={props.value == 4 ? "checked" : ""}
         />
         <label className="star" title="Good" aria-hidden="true"></label>
         <input
@@ -80,7 +80,7 @@ const FrontCard = (props) => {
           value={5}
           className="inline-block w-4 h-4 cursor-pointer ml-2 mt-2"
           onChange={handleChange}
-          checked={props.value == 5 ? "checked" : null}
+          checked={props.value == 5 ? "checked" : ""}
         />
 
         {props.value === "4" ? (

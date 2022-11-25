@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import { updateUser } from "../data/apiCalls";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -13,7 +13,6 @@ export default function Login() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-indigo-900 h-screen">
       <div className="bg-indigo-900 text-white h-screen flex flex-col">
         <Header />
         <div className="flex flex-col text-xl border-4 border-solid border-gray-400 my-auto py-5 w-2/3 lg:w-1/2 w rounded-md bg-slate-50 text-black mx-auto">
@@ -51,7 +50,7 @@ export default function Login() {
                 type={"text"}
                 name="email"
                 value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => null}
               />
             </div>
             <div className="mb-4 mt-4 w-full md:w-3/4 m-auto">
@@ -94,6 +93,5 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

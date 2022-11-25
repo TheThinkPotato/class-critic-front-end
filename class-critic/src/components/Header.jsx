@@ -39,15 +39,13 @@ const Header = (props) => {
           <div className="flex flex-col self-center mx-2">
             <h1 className="text-4xl font-bold">Class Critic</h1>
 
-            <p className="text-2xl font-semibold italic">
-              Find better groups
-            </p>
+            <p className="text-2xl font-semibold italic">Find better groups</p>
           </div>
         </div>
         <SearchBar
           className="my-auto w-52 sm:w-96 ml-2 md:ml-5 border-2 border-black mr-0 md:mr-10"
           onRequestSearch={(e) => {
-            search(e).then((resp) => {              
+            search(e).then((resp) => {
               props.setData(resp.data);
             });
           }}
@@ -59,7 +57,7 @@ const Header = (props) => {
         )}
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="bg-blue-500 mx-2 py-1 px-1 rounded-full hover:bg-indigo-500 mt-2 md:my-2">
+            <Menu.Button className="bg-blue-500 mx-2 py-1 px-1 rounded-full hover:bg-blue-700 mt-2 md:my-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -112,15 +110,18 @@ const Header = (props) => {
                   </Menu.Item>
                 )}
                 {isLoggedIn && (
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link to="/Account">
-                        <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
-                          My Account
-                        </p>
-                      </Link>
-                    )}
-                  </Menu.Item>
+                  <div>
+                    <hr></hr>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link to="/Account">
+                          <p className="py-1 pl-2 text-xl hover:bg-indigo-100">
+                            My Account
+                          </p>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
                 )}
                 <hr />
                 {!isLoggedIn && (
@@ -150,7 +151,7 @@ const Header = (props) => {
                 )}
 
                 {!isLoggedIn && (
-                  <Menu.Item>                    
+                  <Menu.Item>
                     {({ active }) => (
                       <Link to="/Register">
                         <p className="py-1 pl-2 text-xl hover:bg-indigo-100">

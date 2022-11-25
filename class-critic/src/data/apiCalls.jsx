@@ -7,17 +7,8 @@ const URL = `http://${HOST}:${PORT}`;
 axios.defaults.headers.common = {
   Authorization: `bearer ${localStorage.getItem("token")}`,
 };
-// const SEARCH_URL = URL + "/student/search";
 
-// export function search(searchTerm) {
-//   return fetch(SEARCH_URL + "?search=" + searchTerm)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(">>>", data);
-//       return { data };
-//     });
-// }
-
+// search for students
 export async function search(query) {
   const options = {
     path: "/student/search",
@@ -34,8 +25,7 @@ export async function search(query) {
       headers: APIheader,
       params: APIparams,
       timeout: 20000,
-    });
-    console.log("res:", response);
+    });    
 
     if (response.status !== 200) {
       console.log("error:", response.status);
@@ -57,6 +47,7 @@ export async function search(query) {
   }
 }
 
+// login
 export async function login(email, password) {
   const options = {
     path: "/user/login",
@@ -95,6 +86,7 @@ export async function login(email, password) {
   }
 }
 
+// register a new user
 export async function register(fName, lName, email, password) {
   const options = {
     path: "/user/register",
@@ -131,6 +123,7 @@ export async function register(fName, lName, email, password) {
   }
 }
 
+//update user details
 export async function updateUser(fName, lName, email, password) {
   const options = {
     path: `/user/${email}/profile`,
@@ -167,6 +160,7 @@ export async function updateUser(fName, lName, email, password) {
   }
 }
 
+//add a new student
 export async function addStudent(
   fName,
   lName,
@@ -210,7 +204,7 @@ export async function addStudent(
   }
 }
 
-
+// add a student rating
 export async function addRating(student,communication,participation,qualityOfWork,teamWork,punctual,attitude,owner) {
   const options = {
     path: "/student/add-rating",
@@ -227,8 +221,7 @@ export async function addRating(student,communication,participation,qualityOfWor
       headers: APIheader,
       params: APIparams,
       timeout: 20000,
-    });
-    console.log("res:", response);
+    });    
 
     if (response.status !== 200) {
       console.log("error:", response.status);
@@ -250,7 +243,7 @@ export async function addRating(student,communication,participation,qualityOfWor
   }
 }
 
-
+// update student rating
 export async function updateRating(student,communication,participation,qualityOfWork,teamWork,punctual,attitude,owner,index) {
   const options = {
     path: "/student/update-rating",
@@ -268,7 +261,6 @@ export async function updateRating(student,communication,participation,qualityOf
       params: APIparams,
       timeout: 20000,
     });
-    console.log("res:", response);
 
     if (response.status !== 200) {
       console.log("error:", response.status);
@@ -290,8 +282,7 @@ export async function updateRating(student,communication,participation,qualityOf
   }
 }
 
-
-// http://127.0.0.1/student/get-student?lookupName=Jim Nobody QUT
+// get student details
 export async function getStudent(student) {
   const options = {
     path: "/student/get-student",
@@ -309,7 +300,6 @@ export async function getStudent(student) {
       params: APIparams,
       timeout: 20000,
     });
-    console.log("res:", response);
 
     if (response.status !== 200) {
       console.log("error:", response.status);
@@ -331,9 +321,8 @@ export async function getStudent(student) {
   }
 }
 
-
-// http://127.0.0.1/student/get-student?lookupName=Jim Nobody QUT
-export async function getUnis(student) {
+// Get university list
+export async function getUnis() {
   const options = {
     path: "/uni/get-all",    
   };
@@ -349,7 +338,6 @@ export async function getUnis(student) {
       params: APIparams,
       timeout: 20000,
     });
-    console.log("res:", response);
 
     if (response.status !== 200) {
       console.log("error:", response.status);
@@ -370,28 +358,3 @@ export async function getUnis(student) {
     };
   }
 }
-
-
-
-
-// export function login(email, password) {
-// const LOG_IN_URL = URL + "/user/login";
-//   return fetch(LOG_IN_URL, {
-//     method: "POST",
-//     headers: {
-//       accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ email, password }),
-//   })
-//     .then((res) => res.json())
-//     .then((res) => {
-//       if (res.message !== undefined) {
-//         return { errorMessage: res.message, error: res.error };
-//       } else {
-//         let token = res.token;
-//         localStorage.setItem("token", token);
-//         return { errorMessage: res.message, error: res.error };
-//       }
-//     });
-// }
