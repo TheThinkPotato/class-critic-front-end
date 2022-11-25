@@ -11,6 +11,10 @@ const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+  const navigateSearch = (data) => {
+    navigate(`/`, { state: { search: data } });
+  };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
@@ -26,15 +30,19 @@ const Header = (props) => {
   return (
     <header className="bg-white text-slate-900">
       <div className="justify-center flex py-2">
-        <Link to="/">
-          <button className="">
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-16 md:w-24  mt-2 md:mx-2 ml-2"
-            />
-          </button>
-        </Link>
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            navigateSearch("");
+          }}
+        >
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="w-16 md:w-24  mt-2 md:mx-2 ml-2"
+          />
+        </div>
+
         <div className="hidden lg:inline my-2">
           <div className="flex flex-col self-center mx-2">
             <h1 className="text-4xl font-bold">Class Critic</h1>
@@ -45,10 +53,14 @@ const Header = (props) => {
         <SearchBar
           className="my-auto w-52 sm:w-96 ml-2 md:ml-5 border-2 border-black mr-0 md:mr-10"
           onRequestSearch={(e) => {
-            search(e).then((resp) => {
-              props.setData(resp.data);
-            });
+            navigateSearch(e);
           }}
+
+          // onRequestSearch={(e) => {
+          //   search(e).then((resp) => {
+          //     props.setData(resp.data);
+          //   });
+          // }}
         />
         {isLoggedIn && (
           <h2 className="my-auto font-bold text-2xl">
