@@ -44,8 +44,9 @@ function Home() {
           </div>
         )
         : (
-        <div className="text-black bg-gray-50 w-1/2 border-gray-300 border-4 self-center rounded-lg">
-          <h1 className=" bg-orange-500 text-white text-center font-bold text-2xl mb-4 border-b-2 border-orange-700 p-2">Problem...</h1>
+          // fade in loading animation
+        <div className="text-black bg-gray-50 w-1/2 border-gray-300 border-4 self-center rounded-lg fade-in">
+          <h1 className=" bg-orange-500 text-white text-center font-bold text-2xl mb-4 border-b-2 border-orange-700 p-2">Problem ?</h1>
           <div className="text-left mx-auto mx-8 mb-4 font-semibold text-lg">
           <p>Data is still loading or has not been found.</p>
           <p>This could also be an input search error. Please check your search and try again.</p>
