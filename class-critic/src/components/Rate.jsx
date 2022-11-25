@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { addRating, updateRating } from "../data/apiCalls";
 import Rating from "../components/Rating";
 import { getStudent } from "../data/apiCalls";
+import Loader from "../components/Loader";
 
 function setUserRatings(email, dataArray) {
   let ratings = [];
@@ -31,6 +32,13 @@ function setUserRatings(email, dataArray) {
 }
 
 const Rate = (props) => {
+  const [loading, setLoading] = useState(false);
+// let loading = false;
+
+  useEffect(() => {
+    //rerender    
+  }, [loading]);
+
   const data = props.data;
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -104,6 +112,8 @@ const Rate = (props) => {
 
   return (
     <article className="relative z-10 mx-5">
+            {!!loading && (
+      <Loader/>)}
       <div className="absolute top-0 mt-4 w-full">
         <div className="flex border-4 border-solid border-gray-400 my-2 px-5 py-6 rounded-md bg-slate-50 text-black max-w-5xl shadow-lg">
           <form className="flex flex-row w-full justify-around ">
@@ -160,7 +170,8 @@ const Rate = (props) => {
             <button
               className="px-10 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded teamWork:outline-none teamWork:shadow-outline"
               onClick={() => {
-                submitData().then((res) => {
+                setLoading(true);
+                submitData().then((res) => {                  
                   if (res) {
                     if (res.status === 200) {
                       getStudent(data.lookupName).then((res) => {

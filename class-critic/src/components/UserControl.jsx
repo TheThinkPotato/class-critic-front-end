@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, register } from "../data/apiCalls";
 import { swearCheckOk } from "../functions/inputCleanup";
+import Loader from "../components/Loader";
 
 // const login = (email, password) => {};
 
@@ -27,6 +28,7 @@ const UserContol = (props) => {
 
   let registerError = false;
   let logInError = false;
+  let loading = false;
 
   useEffect(() => {
     //rerender
@@ -34,6 +36,8 @@ const UserContol = (props) => {
 
   return (
     <div className="flex flex-col text-xl border-4 border-solid border-gray-400 my-auto py-5 w-2/3 lg:w-1/3 w rounded-md bg-slate-50 text-black mx-auto">
+      {!!loading && (
+      <Loader />)}
       <h1 className="font-bold text-center mb-2 text-2xl">{props.title}</h1>
 
       <p className="font-medium text-center mb-2">{props.text}</p>
@@ -126,6 +130,7 @@ const UserContol = (props) => {
           <button
             className="w-2/6 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
             onClick={() => {
+              loading = true;
               if (swearCheckOk(fName) && swearCheckOk(lName)) {
                 register(fName, lName, email, password).then((res) => {
                   if (res.error) {

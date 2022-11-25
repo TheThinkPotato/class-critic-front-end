@@ -17,6 +17,7 @@ export async function search(query) {
     query: "?search=",
   };
 
+  console.log("Token: ", `bearer ${localStorage.getItem("token")}`);
   const APIheader = {};
   const APIparams = {};
   query = inputCleanUp(query);
